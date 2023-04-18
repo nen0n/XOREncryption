@@ -25,7 +25,7 @@ namespace XOREncryption
         public static void CryptNonText(Crypt crypt, Type type, string inputFile, string outputPath, object key)
         {
             string outputFilePath;
-            byte[] inputBytes = File.ReadAllBytes(inputFile);
+            byte[] inputBytes = FilesWork.ReadFile(inputFile);
             byte[] outputBytes = new byte[inputBytes.Length];
             outputFilePath = outputPath + @"\output (" + DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss") + ")" + Path.GetExtension(inputFile);
             if (type == Type.Caesar)
@@ -90,7 +90,7 @@ namespace XOREncryption
                 string gamma = String.Concat(Enumerable.Repeat(hashString, 100));
                 outputBytes = Equation(inputBytes, gamma);
             }
-            File.WriteAllBytes(outputFilePath, outputBytes);
+            FilesWork.LoadFile(outputFilePath, outputBytes);
         }
 
         public static string CryptText(Crypt crypt, Type type, string plainText, object key)

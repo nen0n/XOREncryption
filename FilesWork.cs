@@ -7,13 +7,13 @@ namespace XOREncryption
 {
     class FilesWork
     {
-        public static string ReadTextFile(string filePath) // Функція зчитування тексту з файлу приймає шлях до файлу
+        public static byte[] ReadFile(string filePath) // Функція зчитування тексту з файлу приймає шлях до файлу
         {
-            string fileContents = ""; // Текст файлу
+            byte[] fileContents = {}; // Текст файлу
 
             try //Спроба зчитати файл
             {
-                fileContents = File.ReadAllText(filePath); //Зчитування файлу
+                fileContents = File.ReadAllBytes(filePath); //Зчитування файлу
             }
             catch (FileNotFoundException)
             {
@@ -27,9 +27,9 @@ namespace XOREncryption
             return fileContents; //Повернення тексту
         }
 
-        public static void LoadTextFile(string fileContents, string filePath) //Функція запису тексту приймає шлях до файлу його зміст
+        public static void LoadFile(string filePath, byte[] fileContents) //Функція запису тексту приймає шлях до файлу його зміст
         {
-            File.WriteAllText(filePath, fileContents); //Запис тексту
+            File.WriteAllBytes(filePath, fileContents); //Запис тексту
         }
     }
 }

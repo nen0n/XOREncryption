@@ -318,7 +318,7 @@ namespace XOREncryption
             {
                 EncryptFile_ChooseOutputButton.Visibility = Visibility.Visible;
             }
-            if (Regex.IsMatch(EncryptFile_KeyText.Text, pattern_only_numbers) && EncryptFile_Type.SelectedIndex == 1)
+            if (Regex.IsMatch(EncryptFile_KeyText.Text, pattern_only_numbers) && EncryptFile_Type.SelectedIndex == 1)   
             {
                 EncryptFile_ChooseOutputButton.Visibility = Visibility.Visible;
             }
