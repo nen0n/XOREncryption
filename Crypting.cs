@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
+using System.Linq;
+using System.Security.Cryptography;
 
 namespace XOREncryption
 {
@@ -82,7 +84,11 @@ namespace XOREncryption
             }
             if (type == Type.XOR)
             {
-                outputBytes = Equation(inputBytes, (string)key);
+                byte[] keyBytes = Encoding.Unicode.GetBytes((string)key);
+                byte[] hashBytes = SHA256.Create().ComputeHash(keyBytes);
+                string hashString = BitConverter.ToString(hashBytes).Replace("-", "").ToLower();
+                string gamma = String.Concat(Enumerable.Repeat(hashString, 100));
+                outputBytes = Equation(inputBytes, gamma);
             }
             File.WriteAllBytes(outputFilePath, outputBytes);
         }
@@ -171,7 +177,11 @@ namespace XOREncryption
             }
             if(type == Type.XOR)
             {
-                cipherText = Equation(plainText, (string)key);
+                byte[] keyBytes = Encoding.Unicode.GetBytes((string)key);
+                byte[] hashBytes = SHA256.Create().ComputeHash(keyBytes);
+                string hashString = BitConverter.ToString(hashBytes).Replace("-", "").ToLower();
+                string gamma = String.Concat(Enumerable.Repeat(hashString, 100));
+                cipherText = Equation(plainText, gamma);
             }
             return cipherText;
         }

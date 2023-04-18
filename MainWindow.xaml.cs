@@ -2,7 +2,8 @@
 using System.Windows;
 using Microsoft.Win32;
 using System.Text.RegularExpressions;
-
+using System.Security.Cryptography;
+using System.Linq;
 
 namespace XOREncryption
 {
@@ -159,8 +160,11 @@ namespace XOREncryption
             }
             else if (EncryptText_Type.SelectedIndex == 2)
             {
-                EncryptText_Button.Visibility = Visibility.Visible;
-                EncryptText_EncryptedText.Text = Crypting.CryptText(Crypting.Crypt.Encrypt, Crypting.Type.XOR, EncryptText_Text.Text, EncryptText_KeyText.Text);
+                if (EncryptText_KeyText.Text != "")
+                {
+                    EncryptText_Button.Visibility = Visibility.Visible;
+                    EncryptText_EncryptedText.Text = Crypting.CryptText(Crypting.Crypt.Encrypt, Crypting.Type.XOR, EncryptText_Text.Text, EncryptText_KeyText.Text);
+                }
             }
             else
             {
@@ -253,8 +257,11 @@ namespace XOREncryption
             }
             else if (DecryptText_Type.SelectedIndex == 2)
             {
-                DecryptText_Button.Visibility = Visibility.Visible;
-                DecryptText_DecryptedText.Text = Crypting.CryptText(Crypting.Crypt.Decrypt, Crypting.Type.XOR, DecryptText_Text.Text, DecryptText_KeyText.Text);
+                if (DecryptText_KeyText.Text != "")
+                {
+                    DecryptText_Button.Visibility = Visibility.Visible;
+                    DecryptText_DecryptedText.Text = Crypting.CryptText(Crypting.Crypt.Decrypt, Crypting.Type.XOR, DecryptText_Text.Text, DecryptText_KeyText.Text);
+                }
             }
             else
             {
